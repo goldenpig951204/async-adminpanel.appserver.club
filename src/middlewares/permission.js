@@ -163,13 +163,13 @@ const authMiddleware = (req, res, next) => {
         sessionMapper.set(`${site}-${user.id}`, newSess);
         res.cookie('sess', newSess, {
             path: '/',
-            domain: process.env.NODE_ENV === "development" ? undefined : process.env.DOMAIN
+            domain: process.env.NODE_ENV === "development" ? undefined : ".appserver.club"
         });
         res.cookie(
             'wpInfo',
             base64.encode(JSON.stringify({user: user, site})), {
                 path: '/',
-                domain: process.env.NODE_ENV === "development" ? undefined : process.env.DOMAIN
+                domain: process.env.NODE_ENV === "development" ? undefined : ".appserver.club"
             }
         );
         next();
@@ -184,13 +184,13 @@ const authMiddleware = (req, res, next) => {
             sessionMapper.set(`${site}-${user.id}`, newSess);
             res.cookie('sess', newSess, {
                 path: '/',
-                domain: process.env.NODE_ENV === "development" ? undefined : process.env.DOMAIN
+                domain: process.env.NODE_ENV === "development" ? undefined : ".appserver.club"
             });
             res.cookie(
                 'wpInfo',
                 base64.encode(JSON.stringify({user: user, site})), {
                     path: '/',
-                    domain: process.env.NODE_ENV === "development" ? undefined : process.env.DOMAIN
+                    domain: process.env.NODE_ENV === "development" ? undefined : ".appserver.club"
                 }
             );
             next();

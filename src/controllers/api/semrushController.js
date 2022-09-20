@@ -41,6 +41,7 @@ module.exports = {
                     }
                 }
             ).then(({data}) => {
+                console.log(data);
                 if (data.user_id) {
                     axios.cookieJar.getCookieString('https://www.semrush.com').then(cookie => {
                         Setting.updateOne(null, { cookie }).then(updatedRow => {
@@ -54,6 +55,8 @@ module.exports = {
                 } else {
                     res.status(500).send('Credential is incorrect.');
                 }
+            }).catch(err => {
+                res.status(500).send(get(err, 'response.data.message') || err.toString());
             });
         } catch (err) {
             serverLog.error(`Start session with ${email} failed: ${get(err, "response.data.message") || err.toString()}`);
